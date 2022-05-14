@@ -1,4 +1,27 @@
-body {
-   background-color: #F2F0EB;
-   font-family: "OpenSans-Light";
+a {
+  font-family: "OpenSans-Regular";
+  font-size: 12px;
+  color: inherit;
+  text-align: right;
+  display: block;
+  margin: 25px;
+  text-decoration: none;
+}
+
+a:hover, a:focus {
+  text-decoration: underline;
+}
+
+h1 {
+  font-family: "OpenSans-Bold";
+  font-size: 36px;
+  text-align: center;
+  margin: 25px;
+}
+
+p {
+  font-family: "OpenSans-Regular";
+  font-size: 18px;
+  text-align: left;
+  margin: 25px;
 }

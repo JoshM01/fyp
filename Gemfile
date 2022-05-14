@@ -44,7 +44,7 @@ gem "bootsnap", require: false
 
 gem "haml"
 gem "sass-rails"
-gem "bootstrap-scss"
+gem "bootstrap-sass"
 gem "modernizr-rails"
 
 # Use Sass to process CSS
