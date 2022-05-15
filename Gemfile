@@ -46,6 +46,9 @@ gem "haml"
 gem "sass-rails"
 gem "bootstrap-sass"
 gem "modernizr-rails"
+gem "chartkick"
+gem "jquery-rails"
+gem "turbolinks"
 
 # Use Sass to process CSS
 # gem "sassc-rails"
