@@ -40,6 +40,7 @@
         type: 'line',
         data: {
           datasets: [{
+            label: 'Deviation from mean temperature (°C)',
             borderColor: 'rgba(255, 99, 132, 1)',
             backgroundColor: 'rgba(255, 99, 132, 0.2)',
             borderWidth: 1,
@@ -48,6 +49,7 @@
             yAxisID: 'y',
           },
           {
+            label: 'Concentration of CO₂ in the atmosphere (ppm)',
             borderColor: 'rgba(54, 162, 235, 1)',
             backgroundColor: 'rgba(54, 162, 235, 0.2)',
             borderWidth: 1,
@@ -92,14 +94,22 @@
           },
           stacked: false,
           plugins: {
-            legend: false
+            legend: false,
+            title: {
+              display: true,
+              text: 'The state of our Earth',
+              font: {
+                family: 'OpenSans-Bold',
+                size: 24
+              }
+            }
           },
           scales: {
             x: {
               type: 'linear',
               grid: {
                 display: false,
-              }
+              },
             },
             y: {
               type: 'linear',
@@ -107,15 +117,26 @@
               position: 'left',
               grid: {
                 display: false,
+              },
+              title: {
+                display: true,
+                align: 'center',
+                text: 'Deviation from mean temperature (°C)',
+                font: 'OpenSans-SemiBold'
               }
             },
             y1: {
               type: 'linear',
               display: true,
               position: 'right',
-              // grid line settings
               grid: {
-                drawOnChartArea: false, // only want the grid lines for one axis to show up
+                drawOnChartArea: false,
+              },
+              title: {
+                display: true,
+                align: 'center',
+                text: 'Concentration of CO₂ in the atmosphere (ppm)',
+                font: 'OpenSans-SemiBold'
               }
             }
           }
