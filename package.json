@@ -1,5 +1,8 @@
 {
   "dependencies": {
-    "chart.js": "^3.7.1"
+    "@rails/webpacker": "5.4.3",
+    "chart.js": "^3.7.1",
+    "webpack": "^4.46.0",
+    "webpack-cli": "^3.3.12"
   }
 }
