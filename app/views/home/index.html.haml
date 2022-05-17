@@ -1,12 +1,12 @@
 !!!
 %html
-  %head
-    %title Climate change is already here.
   %body
     %a= link_to 'About', '/about'
     %h1 Climate change is already here.
-    %p words words words
+    %h2 And we are the reason why it is happening.
     = stylesheet_link_tag "home"
+
+    %p.label *Mean temperature refers to the pre-industrial average
 
     %div
       %canvas#myChart
@@ -65,7 +65,7 @@
             datasets: [{
               label: 'Deviation from mean temperature (°C)',
               borderColor: 'rgba(255, 39, 39, 1)',
-              backgroundColor: 'rgba(255, 39, 39, 1)',
+              backgroundColor: 'rgba(255, 39, 39, 0.5)',
               borderWidth: 2.5,
               radius: 0,
               data: temp,
@@ -74,7 +74,7 @@
             {
               label: 'Concentration of CO₂ in the atmosphere (ppm)',
               borderColor: 'rgba(39, 124, 255, 1)',
-              backgroundColor: 'rgba(39, 124, 255, 1)',
+              backgroundColor: 'rgba(39, 124, 255, 0.5)',
               borderWidth: 2.5,
               radius: 0,
               data: co2,
@@ -117,15 +117,7 @@
             },
             stacked: false,
             plugins: {
-              legend: false,
-              title: {
-                display: true,
-                text: 'The state of our Earth',
-                font: {
-                  family: 'OpenSans-Bold',
-                  size: 24
-                }
-              }
+              legend: true,
             },
             scales: {
               x: {
@@ -157,7 +149,7 @@
                 title: {
                   display: true,
                   align: 'center',
-                  text: 'Deviation from mean temperature (°C)',
+                  text: 'Deviation from mean temperature* (°C)',
                   font: 'OpenSans-SemiBold'
                 }
               },
@@ -179,3 +171,13 @@
           }
         });
       });
+
+    %a{:href => "https://ourworldindata.org/atmospheric-concentrations"}
+      %p.label Atmospheric CO₂ concentration data courtesy of Our World in Data
+
+    %a{:href => "https://data.giss.nasa.gov/gistemp/"}
+      %p.label Deviation from mean temperature data courtesy of NASA
+
+    %p The concentration of carbon dioxide in our atmosphere never exceeded 300 parts per million (ppm) in the last 800,000 years. Today, however, this figure is rapidly approaching 420ppm - and as it climbs further and further, the higher Earth's temperature rises with it.
+
+    %p The fact that these changes in climate have only been noticeable in the last 200 years are no coincidence. The vast majority of scientists agree that climate change is the result of human activity - primarily burning fossil fuels - increasing the concentration of CO₂ and other gases which trap heat in our atmosphere.

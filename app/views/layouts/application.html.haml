@@ -1,7 +1,10 @@
 !!!
 %html
   %head
-    %title Fyp
+    - if content_for?(:title)
+      = content_for(:title)
+    - else
+      %title Climate change is already here.
     %meta{:content => "width=device-width,initial-scale=1", :name => "viewport"}/
     = csrf_meta_tags
     = csp_meta_tag

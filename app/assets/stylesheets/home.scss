@@ -1,19 +1,19 @@
-@keyframes slideInFromBottom {
+/** @keyframes slideInFromBottom {
   0% {
     transform: translateY(50%);
   }
   100% {
     transform: translateY(0);
   }
-}
+} */
 
 a {
   font-family: "OpenSans-Regular";
   font-size: 12px;
   color: inherit;
-  text-align: right;
+  text-align: center;
   display: block;
-  margin: 25px;
+  margin: 5px;
   text-decoration: none;
 }
 
@@ -25,7 +25,14 @@ h1 {
   font-family: "OpenSans-Bold";
   font-size: 36px;
   text-align: center;
-  margin: 25px;
+  margin: 25px 25px 10px 25px;
+}
+
+h2 {
+  font-family: "OpenSans-Light";
+  font-size: 24px;
+  text-align: center;
+  margin: 10px 25px 40px 25px;
 }
 
 p {
@@ -33,6 +40,13 @@ p {
   font-size: 18px;
   text-align: left;
   margin: 25px;
+}
+
+.label {
+  font-family: "OpenSans-Light";
+  font-size: 12px;
+  text-align: center;
+  margin: 5px 25px;
 }
 
 div {
