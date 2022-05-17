@@ -49,6 +49,7 @@ gem "modernizr-rails"
 gem "chartkick"
 gem "jquery-rails"
 gem "turbolinks"
+gem "json"
 
 # Use Sass to process CSS
 # gem "sassc-rails"

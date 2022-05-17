@@ -12,6 +12,8 @@
       %canvas#myChart
 
     %script{:src => "https://cdn.jsdelivr.net/npm/chart.js"}
+    %script{:src => "https://cdn.jsdelivr.net/npm/chart.js/dist/chart.min.js"}
+    %script{:src => "https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"}
 
     :javascript
       Chart.defaults.color = '#eeeeee';
@@ -23,11 +25,11 @@
       const data2 = [];
       let prev = 100;
       let prev2 = 80;
-      for (let i = 0; i < 1000; i++) {
+      for (let i = 0; i < 141; i++) {
         prev += 5 - Math.random() * 10;
-        data.push({x: i, y: prev});
+        data.push({x: (1880+i).toString(), y: prev});
         prev2 += 5 - Math.random() * 10;
-        data2.push({x: i, y: prev2});
+        data2.push({x: (1880+i).toString(), y: prev2});
       }
 
       const totalDuration = 10000;
@@ -106,10 +108,25 @@
           },
           scales: {
             x: {
-              type: 'linear',
+              type: 'time',
+              time: {
+                unit: 'year',
+              },
+              min: {
+                min: '1880',
+              },
+              displayFormats: {
+                year: 'YYYY',
+              },
               grid: {
                 display: false,
               },
+              title: {
+                display: true,
+                align: 'center',
+                text: 'Year',
+                font: 'OpenSans-SemiBold'
+              }
             },
             y: {
               type: 'linear',
