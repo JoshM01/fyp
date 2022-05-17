@@ -14,148 +14,168 @@
     %script{:src => "https://cdn.jsdelivr.net/npm/chart.js"}
     %script{:src => "https://cdn.jsdelivr.net/npm/chart.js/dist/chart.min.js"}
     %script{:src => "https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"}
+    %script{:src => "https://d3js.org/d3.v6.min.js"}
 
     :javascript
       Chart.defaults.color = '#eeeeee';
       Chart.defaults.borderColor = '#eeeeee';
       Chart.defaults.font.family = "OpenSans-Medium";
       Chart.defaults.font.size = 12;
+      Chart.overrides.line.spanGaps = true;
+      Chart.overrides.line.tension = 0.25;
 
-      const data = [];
-      const data2 = [];
-      let prev = 100;
-      let prev2 = 80;
-      for (let i = 0; i < 141; i++) {
-        prev += 5 - Math.random() * 10;
-        data.push({x: (1880+i).toString(), y: prev});
-        prev2 += 5 - Math.random() * 10;
-        data2.push({x: (1880+i).toString(), y: prev2});
-      }
+      let filename = 'data.csv';
 
-      const totalDuration = 10000;
-      const delayBetweenPoints = totalDuration / data.length;
-      const previousY = (ctx) => ctx.index === 0 ? ctx.chart.scales.y.getPixelForValue(100) : ctx.chart.getDatasetMeta(ctx.datasetIndex).data[ctx.index - 1].getProps(['y'], true).y;
+      d3.csv(filename).then(function(loadedData) {
 
-      var ctx = document.getElementById('myChart').getContext('2d');
+        console.log(loadedData);
 
-      var myChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-          datasets: [{
-            label: 'Deviation from mean temperature (°C)',
-            borderColor: 'rgba(255, 99, 132, 1)',
-            backgroundColor: 'rgba(255, 99, 132, 0.2)',
-            borderWidth: 1,
-            radius: 0,
-            data: data,
-            yAxisID: 'y',
+        let co2 = [];
+        let temp = [];
+        let labels = [];
+
+        for (let i=0; i<loadedData.length; i++) {
+          console.log(loadedData[i]);
+
+          let concentration = NaN;
+          let deviation = loadedData[i].Temperature_deviation;
+          if(loadedData[i].CO2_concentration!=''){
+            concentration = loadedData[i].CO2_concentration;
+          }
+          let years = loadedData[i].Year;
+          console.log(concentration);
+          console.log(deviation);
+          console.log(years);
+
+          co2.push(concentration);
+          temp.push(deviation);
+          labels.push(years);
+        }
+
+        const totalDuration = 10000;
+        const delayBetweenPoints = totalDuration / labels.length;
+        const previousY = (ctx) => ctx.index === 0 ? ctx.chart.scales.y.getPixelForValue(100) : ctx.chart.getDatasetMeta(ctx.datasetIndex).data[ctx.index - 1].getProps(['y'], true).y;
+
+        var ctx = document.getElementById('myChart').getContext('2d');
+
+        var myChart = new Chart(ctx, {
+          type: 'line',
+          data: {
+            labels: labels,
+            datasets: [{
+              label: 'Deviation from mean temperature (°C)',
+              borderColor: 'rgba(255, 39, 39, 1)',
+              backgroundColor: 'rgba(255, 39, 39, 1)',
+              borderWidth: 2.5,
+              radius: 0,
+              data: temp,
+              yAxisID: 'y',
+            },
+            {
+              label: 'Concentration of CO₂ in the atmosphere (ppm)',
+              borderColor: 'rgba(39, 124, 255, 1)',
+              backgroundColor: 'rgba(39, 124, 255, 1)',
+              borderWidth: 2.5,
+              radius: 0,
+              data: co2,
+              yAxisID: 'y1',
+            }]
           },
-          {
-            label: 'Concentration of CO₂ in the atmosphere (ppm)',
-            borderColor: 'rgba(54, 162, 235, 1)',
-            backgroundColor: 'rgba(54, 162, 235, 0.2)',
-            borderWidth: 1,
-            radius: 0,
-            data: data2,
-            yAxisID: 'y1',
-          }]
-        },
-        options: {
-          animation: {
-            x: {
-              type: 'number',
-              easing: 'linear',
-              duration: delayBetweenPoints,
-              from: NaN, // the point is initially skipped
-              delay(ctx) {
-                if (ctx.type !== 'data' || ctx.xStarted) {
-                  return 0;
+          options: {
+            animation: {
+              x: {
+                type: 'number',
+                easing: 'linear',
+                duration: delayBetweenPoints,
+                from: NaN,
+                delay(ctx) {
+                  if (ctx.type !== 'data' || ctx.xStarted) {
+                    return 0;
+                  }
+                  ctx.xStarted = true;
+                  return ctx.index * delayBetweenPoints;
                 }
-                ctx.xStarted = true;
-                return ctx.index * delayBetweenPoints;
-              }
-            },
-            y: {
-              type: 'number',
-              easing: 'linear',
-              duration: delayBetweenPoints,
-              from: previousY,
-              delay(ctx) {
-                if (ctx.type !== 'data' || ctx.yStarted) {
-                  return 0;
+              },
+              y: {
+                type: 'number',
+                easing: 'linear',
+                duration: delayBetweenPoints,
+                from: previousY,
+                delay(ctx) {
+                  if (ctx.type !== 'data' || ctx.yStarted) {
+                    return 0;
+                  }
+                  ctx.yStarted = true;
+                  return ctx.index * delayBetweenPoints;
                 }
-                ctx.yStarted = true;
-                return ctx.index * delayBetweenPoints;
-              }
-            }
-          },
-          responsive: true,
-          interaction: {
-            mode: 'index',
-            intersect: false
-          },
-          stacked: false,
-          plugins: {
-            legend: false,
-            title: {
-              display: true,
-              text: 'The state of our Earth',
-              font: {
-                family: 'OpenSans-Bold',
-                size: 24
-              }
-            }
-          },
-          scales: {
-            x: {
-              type: 'time',
-              time: {
-                unit: 'year',
-              },
-              min: {
-                min: '1880',
-              },
-              displayFormats: {
-                year: 'YYYY',
-              },
-              grid: {
-                display: false,
-              },
-              title: {
-                display: true,
-                align: 'center',
-                text: 'Year',
-                font: 'OpenSans-SemiBold'
               }
             },
-            y: {
-              type: 'linear',
-              display: true,
-              position: 'left',
-              grid: {
-                display: false,
-              },
+            responsive: true,
+            interaction: {
+              mode: 'index',
+              intersect: false
+            },
+            stacked: false,
+            plugins: {
+              legend: false,
               title: {
                 display: true,
-                align: 'center',
-                text: 'Deviation from mean temperature (°C)',
-                font: 'OpenSans-SemiBold'
+                text: 'The state of our Earth',
+                font: {
+                  family: 'OpenSans-Bold',
+                  size: 24
+                }
               }
             },
-            y1: {
-              type: 'linear',
-              display: true,
-              position: 'right',
-              grid: {
-                drawOnChartArea: false,
+            scales: {
+              x: {
+                type: 'time',
+                time: {
+                  unit: 'year',
+                  tooltipFormat: 'yyyy',
+                },
+                displayFormats: {
+                  year: 'yyyy',
+                },
+                grid: {
+                  display: false,
+                },
+                title: {
+                  display: true,
+                  align: 'center',
+                  text: 'Year',
+                  font: 'OpenSans-SemiBold'
+                }
               },
-              title: {
+              y: {
+                type: 'linear',
                 display: true,
-                align: 'center',
-                text: 'Concentration of CO₂ in the atmosphere (ppm)',
-                font: 'OpenSans-SemiBold'
+                position: 'left',
+                grid: {
+                  display: false,
+                },
+                title: {
+                  display: true,
+                  align: 'center',
+                  text: 'Deviation from mean temperature (°C)',
+                  font: 'OpenSans-SemiBold'
+                }
+              },
+              y1: {
+                type: 'linear',
+                display: true,
+                position: 'right',
+                grid: {
+                  drawOnChartArea: false,
+                },
+                title: {
+                  display: true,
+                  align: 'center',
+                  text: 'Concentration of CO₂ in the atmosphere (ppm)',
+                  font: 'OpenSans-SemiBold'
+                }
               }
             }
           }
-        }
+        });
       });
