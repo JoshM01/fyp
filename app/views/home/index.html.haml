@@ -16,152 +16,9 @@
     %script{:src => "https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"}
     %script{:src => "https://d3js.org/d3.v6.min.js"}
     %script{:src => "https://cdn.jsdelivr.net/npm/chartjs-plugin-trendline"}
+    %script{:src => "chart_settings.js"}
+    %script{:src => "chart_1.js"}
 
-    :javascript
-      Chart.defaults.color = '#eeeeee';
-      Chart.defaults.borderColor = '#eeeeee';
-      Chart.defaults.font.family = "OpenSans-Medium";
-      Chart.defaults.font.size = 12;
-      Chart.overrides.line.spanGaps = true;
-      Chart.overrides.line.tension = 0.25;
-
-      d3.csv('data.csv').then(function(loadedData1) {
-
-        let co2 = [];
-        let temp = [];
-        let labels1 = [];
-
-        for (let i=0; i<loadedData1.length; i++) {
-          if(loadedData1[i].CO2_concentration!=''){
-            let concentration = loadedData1[i].CO2_concentration;
-            co2.push(loadedData1[i].CO2_concentration)
-          }else{
-            co2.push(NaN)
-          }
-
-          temp.push(loadedData1[i].Temperature_deviation);
-          labels1.push(loadedData1[i].Year);
-        }
-
-        const totalDuration = 10000;
-        const delayBetweenPoints = totalDuration / labels1.length;
-        const previousY = (ctx) => ctx.index === 0 ? ctx.chart.scales.y.getPixelForValue(100) : ctx.chart.getDatasetMeta(ctx.datasetIndex).data[ctx.index - 1].getProps(['y'], true).y;
-
-        var ctx1 = document.getElementById('chart1').getContext('2d');
-
-        var chart1 = new Chart(ctx1, {
-          type: 'line',
-          data: {
-            labels: labels1,
-            datasets: [{
-              label: 'Deviation from mean temperature (°C)',
-              borderColor: 'rgba(255, 39, 39, 1)',
-              backgroundColor: 'rgba(255, 39, 39, 0.5)',
-              borderWidth: 2.5,
-              radius: 0,
-              data: temp,
-              yAxisID: 'y',
-            },
-            {
-              label: 'Concentration of CO₂ in the atmosphere (ppm)',
-              borderColor: 'rgba(39, 124, 255, 1)',
-              backgroundColor: 'rgba(39, 124, 255, 0.5)',
-              borderWidth: 2.5,
-              radius: 0,
-              data: co2,
-              yAxisID: 'y1',
-            }]
-          },
-          options: {
-            animation: {
-              x: {
-                type: 'number',
-                easing: 'linear',
-                duration: delayBetweenPoints,
-                from: NaN,
-                delay(ctx) {
-                  if (ctx.type !== 'data' || ctx.xStarted) {
-                    return 0;
-                  }
-                  ctx.xStarted = true;
-                  return ctx.index * delayBetweenPoints;
-                }
-              },
-              y: {
-                type: 'number',
-                easing: 'linear',
-                duration: delayBetweenPoints,
-                from: previousY,
-                delay(ctx) {
-                  if (ctx.type !== 'data' || ctx.yStarted) {
-                    return 0;
-                  }
-                  ctx.yStarted = true;
-                  return ctx.index * delayBetweenPoints;
-                }
-              }
-            },
-            responsive: true,
-            interaction: {
-              mode: 'index',
-              intersect: false
-            },
-            stacked: false,
-            plugins: {
-              legend: true,
-            },
-            scales: {
-              x: {
-                type: 'time',
-                time: {
-                  unit: 'year',
-                  tooltipFormat: 'yyyy',
-                },
-                displayFormats: {
-                  year: 'yyyy',
-                },
-                grid: {
-                  display: false,
-                },
-                title: {
-                  display: true,
-                  align: 'center',
-                  text: 'Year',
-                  font: 'OpenSans-SemiBold'
-                }
-              },
-              y: {
-                type: 'linear',
-                display: true,
-                position: 'left',
-                grid: {
-                  display: false,
-                },
-                title: {
-                  display: true,
-                  align: 'center',
-                  text: 'Deviation from mean temperature* (°C)',
-                  font: 'OpenSans-SemiBold'
-                }
-              },
-              y1: {
-                type: 'linear',
-                display: true,
-                position: 'right',
-                grid: {
-                  drawOnChartArea: false,
-                },
-                title: {
-                  display: true,
-                  align: 'center',
-                  text: 'Concentration of CO₂ in the atmosphere (ppm)',
-                  font: 'OpenSans-SemiBold'
-                }
-              }
-            }
-          }
-        });
-      });
 
     %a{:href => "https://ourworldindata.org/atmospheric-concentrations"}
       %p.label Atmospheric CO₂ concentration data courtesy of Our World in Data
@@ -176,6 +33,7 @@
     %div
       %canvas#chart2
 
+  /
     :javascript
       d3.csv('heathrow.csv').then(function(loadedData2) {
 
