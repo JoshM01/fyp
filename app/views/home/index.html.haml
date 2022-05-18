@@ -9,12 +9,13 @@
     %p.label *Mean temperature refers to the pre-industrial average
 
     %div
-      %canvas#myChart
+      %canvas#chart1
 
     %script{:src => "https://cdn.jsdelivr.net/npm/chart.js"}
     %script{:src => "https://cdn.jsdelivr.net/npm/chart.js/dist/chart.min.js"}
     %script{:src => "https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"}
     %script{:src => "https://d3js.org/d3.v6.min.js"}
+    %script{:src => "https://cdn.jsdelivr.net/npm/chartjs-plugin-trendline"}
 
     :javascript
       Chart.defaults.color = '#eeeeee';
@@ -24,44 +25,34 @@
       Chart.overrides.line.spanGaps = true;
       Chart.overrides.line.tension = 0.25;
 
-      let filename = 'data.csv';
-
-      d3.csv(filename).then(function(loadedData) {
-
-        console.log(loadedData);
+      d3.csv('data.csv').then(function(loadedData1) {
 
         let co2 = [];
         let temp = [];
-        let labels = [];
+        let labels1 = [];
 
-        for (let i=0; i<loadedData.length; i++) {
-          console.log(loadedData[i]);
-
-          let concentration = NaN;
-          let deviation = loadedData[i].Temperature_deviation;
-          if(loadedData[i].CO2_concentration!=''){
-            concentration = loadedData[i].CO2_concentration;
+        for (let i=0; i<loadedData1.length; i++) {
+          if(loadedData1[i].CO2_concentration!=''){
+            let concentration = loadedData1[i].CO2_concentration;
+            co2.push(loadedData1[i].CO2_concentration)
+          }else{
+            co2.push(NaN)
           }
-          let years = loadedData[i].Year;
-          console.log(concentration);
-          console.log(deviation);
-          console.log(years);
 
-          co2.push(concentration);
-          temp.push(deviation);
-          labels.push(years);
+          temp.push(loadedData1[i].Temperature_deviation);
+          labels1.push(loadedData1[i].Year);
         }
 
         const totalDuration = 10000;
-        const delayBetweenPoints = totalDuration / labels.length;
+        const delayBetweenPoints = totalDuration / labels1.length;
         const previousY = (ctx) => ctx.index === 0 ? ctx.chart.scales.y.getPixelForValue(100) : ctx.chart.getDatasetMeta(ctx.datasetIndex).data[ctx.index - 1].getProps(['y'], true).y;
 
-        var ctx = document.getElementById('myChart').getContext('2d');
+        var ctx1 = document.getElementById('chart1').getContext('2d');
 
-        var myChart = new Chart(ctx, {
+        var chart1 = new Chart(ctx1, {
           type: 'line',
           data: {
-            labels: labels,
+            labels: labels1,
             datasets: [{
               label: 'Deviation from mean temperature (°C)',
               borderColor: 'rgba(255, 39, 39, 1)',
@@ -181,3 +172,159 @@
     %p The concentration of carbon dioxide in our atmosphere never exceeded 300 parts per million (ppm) in the last 800,000 years. Today, however, this figure is rapidly approaching 420ppm - and as it climbs further and further, the higher Earth's temperature rises with it.
 
     %p The fact that these changes in climate have only been noticeable in the last 200 years are no coincidence. The vast majority of scientists agree that climate change is the result of human activity - primarily burning fossil fuels - increasing the concentration of CO₂ and other gases which trap heat in our atmosphere.
+
+    %div
+      %canvas#chart2
+
+    :javascript
+      d3.csv('heathrow.csv').then(function(loadedData2) {
+
+        let jan = [];
+        let apr = [];
+        let jul = [];
+        let oct = [];
+        let labels2 = [];
+
+        for (let i=0; i<loadedData2.length; i++) {
+          if(loadedData2[i].Month == "january"){
+            jan.push(loadedData2[i].Tmax);
+          }
+          if(loadedData2[i].Month == "april"){
+            apr.push(loadedData2[i].Tmax);
+          }
+          if(loadedData2[i].Month == "july"){
+            jul.push(loadedData2[i].Tmax);
+          }
+          if(loadedData2[i].Month == "october"){
+            oct.push(loadedData2[i].Tmax);
+          }
+          if(i % 12 == 0){
+            labels2.push(loadedData2[i].Year);
+          }
+        }
+
+        const totalDuration = 10000;
+        const delayBetweenPoints = totalDuration / labels2.length;
+        const previousY = (ctx) => ctx.index === 0 ? ctx.chart.scales.y.getPixelForValue(100) : ctx.chart.getDatasetMeta(ctx.datasetIndex).data[ctx.index - 1].getProps(['y'], true).y;
+
+        var ctx2 = document.getElementById('chart2');
+
+        var chart2 = new Chart(ctx2, {
+          type: 'line',
+          data: {
+            labels: labels2,
+            datasets: [{
+              label: 'Average temperature in January',
+              borderColor: 'rgba(39, 124, 255, 1)',
+              backgroundColor: 'rgba(39, 124, 255, 0.5)',
+              borderWidth: 2.5,
+              radius: 0,
+              data: jan,
+              trendlineLinear: {
+                style: '#ffff00',
+                lineStype: 'line',
+                width: 1,
+                projection: true
+              }
+            }/**,
+            {
+              label: 'Average temperature in April',
+              borderColor: 'rgba(39, 169, 39, 1)',
+              backgroundColor: 'rgba(39, 169, 39, 0.5)',
+              borderWidth: 2.5,
+              radius: 0,
+              data: apr,
+            },
+            {
+              label: 'Average temperature in July',
+              borderColor: 'rgba(255, 208, 39, 1)',
+              backgroundColor: 'rgba(255, 208, 39, 0.5)',
+              borderWidth: 2.5,
+              radius: 0,
+              data: jul,
+            },
+            {
+              label: 'Average temperature in October',
+              borderColor: 'rgba(255, 39, 39, 1)',
+              backgroundColor: 'rgba(255, 39, 39, 0.5)',
+              borderWidth: 2.5,
+              radius: 0,
+              data: oct,
+            }*/]
+          },
+          options: {
+            animation: {
+              x: {
+                type: 'number',
+                easing: 'linear',
+                duration: delayBetweenPoints,
+                from: NaN,
+                delay(ctx) {
+                  if (ctx.type !== 'data' || ctx.xStarted) {
+                    return 0;
+                  }
+                  ctx.xStarted = true;
+                  return ctx.index * delayBetweenPoints;
+                }
+              },
+              y: {
+                type: 'number',
+                easing: 'linear',
+                duration: delayBetweenPoints,
+                from: previousY,
+                delay(ctx) {
+                  if (ctx.type !== 'data' || ctx.yStarted) {
+                    return 0;
+                  }
+                  ctx.yStarted = true;
+                  return ctx.index * delayBetweenPoints;
+                }
+              }
+            },
+            responsive: true,
+            interaction: {
+              mode: 'index',
+              intersect: false
+            },
+            stacked: false,
+            plugins: {
+              legend: true,
+            },
+            scales: {
+              x: {
+                type: 'time',
+                time: {
+                  unit: 'year',
+                  tooltipFormat: 'yyyy',
+                },
+                displayFormats: {
+                  year: 'yyyy',
+                },
+                grid: {
+                  display: false,
+                },
+                title: {
+                  display: true,
+                  align: 'center',
+                  text: 'Year',
+                  font: 'OpenSans-SemiBold'
+                }
+              },
+              y: {
+                type: 'linear',
+                display: true,
+                position: 'left',
+                grid: {
+                  display: false,
+                },
+                title: {
+                  display: true,
+                  align: 'center',
+                  text: 'Average monthly temperature (°C)',
+                  font: 'OpenSans-SemiBold'
+                }
+              }
+            }
+          }
+        });
+      });
