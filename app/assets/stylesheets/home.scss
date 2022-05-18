@@ -7,6 +7,66 @@
   }
 } */
 
+body, html {
+  height: 100%;
+  margin: 0;
+}
+
+.centre {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 72px;
+  font-family: "OpenSans-ExtraBoldItalic";
+  color: #000000;
+}
+
+.bg1{
+  background-image: url("bangkok2.png");
+  height: 40%;
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+  text-align: center;
+}
+
+.bg2{
+  background-image: url("jakarta2.png");
+  height: 40%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  text-align: center;
+}
+
+.bg3{
+  background-image: url("maldives2.png");
+  height: 40%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  text-align: center;
+}
+
+.bg4{
+  background-image: url("miami2.png");
+  height: 40%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  text-align: center;
+}
+
+.bg5{
+  background-image: url("venice2.png");
+  height: 40%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  text-align: center;
+}
+
 a {
   font-family: "OpenSans-Regular";
   font-size: 12px;
@@ -47,10 +107,4 @@ p {
   font-size: 12px;
   text-align: center;
   margin: 5px 25px;
-}
-
-div {
-  animation: 2s ease-out 0s 1 slideInFromBottom;
-  margin: auto;
-  max-width: 960px;
 }
