@@ -8,3 +8,5 @@ import "controllers"
 
 import "chartkick"
 import "Chart.bundle"
+
+window.onresize = function(){ location.reload(); }

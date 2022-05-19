@@ -9,7 +9,22 @@
 
 body, html {
   height: 100%;
+  width: 100%;
   margin: 0;
+}
+
+.chart {
+  position: relative;
+  margin: auto;
+  min-width: 600px;
+  width: 75%;
+}
+
+.pie {
+  position: relative;
+  margin: auto;
+  min-width: 600px;
+  width: 50%;
 }
 
 .centre {
@@ -19,12 +34,12 @@ body, html {
   transform: translate(-50%, -50%);
   font-size: 72px;
   font-family: "OpenSans-ExtraBoldItalic";
-  color: #000000;
+  color: #ffffff;
 }
 
 .bg1{
   background-image: url("bangkok2.png");
-  height: 40%;
+  height: 25%;
   background-position: bottom;
   background-repeat: no-repeat;
   background-size: cover;
@@ -33,8 +48,8 @@ body, html {
 
 .bg2{
   background-image: url("jakarta2.png");
-  height: 40%;
-  background-position: center;
+  height: 25%;
+  background-position: center 70%;
   background-repeat: no-repeat;
   background-size: cover;
   text-align: center;
@@ -42,7 +57,7 @@ body, html {
 
 .bg3{
   background-image: url("maldives2.png");
-  height: 40%;
+  height: 25%;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -51,7 +66,7 @@ body, html {
 
 .bg4{
   background-image: url("miami2.png");
-  height: 40%;
+  height: 25%;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -60,8 +75,8 @@ body, html {
 
 .bg5{
   background-image: url("venice2.png");
-  height: 40%;
-  background-position: center;
+  height: 25%;
+  background-position: center 70%;
   background-repeat: no-repeat;
   background-size: cover;
   text-align: center;

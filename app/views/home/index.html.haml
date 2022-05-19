@@ -10,14 +10,14 @@
 
     %p.label *Mean temperature refers to the pre-industrial average
 
-    %div
+    .chart
       %canvas#chart1
 
     %script{:src => "https://cdn.jsdelivr.net/npm/chart.js"}
     %script{:src => "https://cdn.jsdelivr.net/npm/chart.js/dist/chart.min.js"}
     %script{:src => "https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"}
     %script{:src => "https://d3js.org/d3.v6.min.js"}
-    %script{:src => "https://cdn.jsdelivr.net/npm/chartjs-plugin-trendline"}
+    %script{:src => "https://cdn.jsdelivr.net/npm/chartjs-plugin-deferred@2.0.0/dist/chartjs-plugin-deferred.min.js"}
     %script{:src => "chart_settings.js"}
     %script{:src => "chart_1.js"}
 
@@ -42,6 +42,14 @@
       .centre Miami
     .bg5
       .centre Venice
+
+    %a{:href => '/about'}
+      %p.label Image sources can be found on the About page.
+
+    .pie
+      %canvas#chart2
+
+    %script{:src => "chart_2.js"}
 
   /
     :javascript
