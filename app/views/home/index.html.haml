@@ -2,25 +2,28 @@
 %html
   %head
     %meta{:content => "width=device-width, initial-scale=1"}
+    %script{:src => "https://cdn.jsdelivr.net/npm/chart.js"}
+    %script{:src => "https://cdn.jsdelivr.net/npm/chart.js/dist/chart.min.js"}
+    %script{:src => "https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"}
+    %script{:src => "https://d3js.org/d3.v6.min.js"}
+    %script{:src => "https://cdn.jsdelivr.net/npm/chartjs-plugin-deferred@2.0.0/dist/chartjs-plugin-deferred.min.js"}
+    %script{:src => "https://d3js.org/d3-geo-projection.v2.min.js"}
+    %script{:src => "https://d3js.org/d3-scale-chromatic.v1.min.js"}
+    %script{:src => "chart_settings.js"}
+    = stylesheet_link_tag "home"
+
   %body
-    %a= link_to 'About', '/about'
+    %a{:href => '/about'}
+      %p.label About
     %h1 Climate change is already here.
     %h2 And we are the reason why it is happening.
-    = stylesheet_link_tag "home"
 
     %p.label *Mean temperature refers to the pre-industrial average
 
     .chart
       %canvas#chart1
 
-    %script{:src => "https://cdn.jsdelivr.net/npm/chart.js"}
-    %script{:src => "https://cdn.jsdelivr.net/npm/chart.js/dist/chart.min.js"}
-    %script{:src => "https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"}
-    %script{:src => "https://d3js.org/d3.v6.min.js"}
-    %script{:src => "https://cdn.jsdelivr.net/npm/chartjs-plugin-deferred@2.0.0/dist/chartjs-plugin-deferred.min.js"}
-    %script{:src => "chart_settings.js"}
     %script{:src => "chart_1.js"}
-
 
     %a{:href => "https://ourworldindata.org/atmospheric-concentrations"}
       %p.label Atmospheric CO₂ concentration data courtesy of Our World in Data
@@ -32,175 +35,33 @@
 
     %p The fact that these changes in climate have only been noticeable in the last 200 years are no coincidence. The vast majority of scientists agree that climate change is the result of human activity - primarily burning fossil fuels - increasing the concentration of CO₂ and other gases which trap heat in our atmosphere.
 
+    %p This temperature rise will heat our oceans and melt our icecaps, causing sea levels to rise. With the combination of higher sea levels and higher temperatures, hundreds of millions of people may have to leave their homes before 2050, with large-scale climate migration likely to begin by 2030.
+
     .bg1
-      .centre Bangkok
+      %a{:href => "https://www.bangkokpost.com/thailand/general/1785569/revised-forecast-puts-bangkok-underwater-by-2050"}
+        .centre Bangkok
     .bg2
-      .centre Jakarta
+      %a{:href => "https://www.aa.com.tr/en/asia-pacific/jakarta-could-be-underwater-by-2030-experts/1017878"}
+        .centre Jakarta
     .bg3
-      .centre Maldives
+      %a{:href => "https://www.aa.com.tr/en/asia-pacific/80-of-maldives-could-be-uninhabitable-by-2050/2412696"}
+        .centre Maldives
     .bg4
-      .centre Miami
+      %a{:href => "https://media.rff.org/documents/FCO_Infographics.pdf"}
+        .centre Miami
     .bg5
-      .centre Venice
+      %a{:href => "https://thehill.com/changing-america/sustainability/climate-change/579490-an-expert-explains-how-rising-sea-levels-could/"}
+        .centre Venice
 
     %a{:href => '/about'}
       %p.label Image sources can be found on the About page.
+
+    %p This isn't a tourism ad. All of these places are at risk of being destroyed by rising sea levels - whether through direct flooding, disruptions to water supply and/or salt water damaging buildings. The cost of inaction is extremely high.
 
     .pie
       %canvas#chart2
 
     %script{:src => "chart_2.js"}
 
-  /
-    :javascript
-      d3.csv('heathrow.csv').then(function(loadedData2) {
-
-        let jan = [];
-        let apr = [];
-        let jul = [];
-        let oct = [];
-        let labels2 = [];
-
-        for (let i=0; i<loadedData2.length; i++) {
-          if(loadedData2[i].Month == "january"){
-            jan.push(loadedData2[i].Tmax);
-          }
-          if(loadedData2[i].Month == "april"){
-            apr.push(loadedData2[i].Tmax);
-          }
-          if(loadedData2[i].Month == "july"){
-            jul.push(loadedData2[i].Tmax);
-          }
-          if(loadedData2[i].Month == "october"){
-            oct.push(loadedData2[i].Tmax);
-          }
-          if(i % 12 == 0){
-            labels2.push(loadedData2[i].Year);
-          }
-        }
-
-        const totalDuration = 10000;
-        const delayBetweenPoints = totalDuration / labels2.length;
-        const previousY = (ctx) => ctx.index === 0 ? ctx.chart.scales.y.getPixelForValue(100) : ctx.chart.getDatasetMeta(ctx.datasetIndex).data[ctx.index - 1].getProps(['y'], true).y;
-
-        var ctx2 = document.getElementById('chart2');
-
-        var chart2 = new Chart(ctx2, {
-          type: 'line',
-          data: {
-            labels: labels2,
-            datasets: [{
-              label: 'Average temperature in January',
-              borderColor: 'rgba(39, 124, 255, 1)',
-              backgroundColor: 'rgba(39, 124, 255, 0.5)',
-              borderWidth: 2.5,
-              radius: 0,
-              data: jan,
-              trendlineLinear: {
-                style: '#ffff00',
-                lineStype: 'line',
-                width: 1,
-                projection: true
-              }
-            }/**,
-            {
-              label: 'Average temperature in April',
-              borderColor: 'rgba(39, 169, 39, 1)',
-              backgroundColor: 'rgba(39, 169, 39, 0.5)',
-              borderWidth: 2.5,
-              radius: 0,
-              data: apr,
-            },
-            {
-              label: 'Average temperature in July',
-              borderColor: 'rgba(255, 208, 39, 1)',
-              backgroundColor: 'rgba(255, 208, 39, 0.5)',
-              borderWidth: 2.5,
-              radius: 0,
-              data: jul,
-            },
-            {
-              label: 'Average temperature in October',
-              borderColor: 'rgba(255, 39, 39, 1)',
-              backgroundColor: 'rgba(255, 39, 39, 0.5)',
-              borderWidth: 2.5,
-              radius: 0,
-              data: oct,
-            }*/]
-          },
-          options: {
-            animation: {
-              x: {
-                type: 'number',
-                easing: 'linear',
-                duration: delayBetweenPoints,
-                from: NaN,
-                delay(ctx) {
-                  if (ctx.type !== 'data' || ctx.xStarted) {
-                    return 0;
-                  }
-                  ctx.xStarted = true;
-                  return ctx.index * delayBetweenPoints;
-                }
-              },
-              y: {
-                type: 'number',
-                easing: 'linear',
-                duration: delayBetweenPoints,
-                from: previousY,
-                delay(ctx) {
-                  if (ctx.type !== 'data' || ctx.yStarted) {
-                    return 0;
-                  }
-                  ctx.yStarted = true;
-                  return ctx.index * delayBetweenPoints;
-                }
-              }
-            },
-            responsive: true,
-            interaction: {
-              mode: 'index',
-              intersect: false
-            },
-            stacked: false,
-            plugins: {
-              legend: true,
-            },
-            scales: {
-              x: {
-                type: 'time',
-                time: {
-                  unit: 'year',
-                  tooltipFormat: 'yyyy',
-                },
-                displayFormats: {
-                  year: 'yyyy',
-                },
-                grid: {
-                  display: false,
-                },
-                title: {
-                  display: true,
-                  align: 'center',
-                  text: 'Year',
-                  font: 'OpenSans-SemiBold'
-                }
-              },
-              y: {
-                type: 'linear',
-                display: true,
-                position: 'left',
-                grid: {
-                  display: false,
-                },
-                title: {
-                  display: true,
-                  align: 'center',
-                  text: 'Average monthly temperature (°C)',
-                  font: 'OpenSans-SemiBold'
-                }
-              }
-            }
-          }
-        });
-      });
+    %hr
+    %p Thank you

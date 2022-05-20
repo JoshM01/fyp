@@ -29,7 +29,7 @@ d3.csv('data.csv').then(function(loadedData) {
       datasets: [{
         label: 'Deviation from mean temperature* (°C)',
         borderColor: 'rgba(255, 39, 39, 1)',
-        backgroundColor: 'rgba(255, 39, 39, 0.5)',
+        backgroundColor: 'rgba(255, 39, 39, 1)',
         borderWidth: 2.5,
         radius: 0,
         data: temp,
@@ -38,7 +38,7 @@ d3.csv('data.csv').then(function(loadedData) {
       {
         label: 'Concentration of CO₂ in the atmosphere (ppm)',
         borderColor: 'rgba(39, 124, 255, 1)',
-        backgroundColor: 'rgba(39, 124, 255, 0.5)',
+        backgroundColor: 'rgba(39, 124, 255, 1)',
         borderWidth: 2.5,
         radius: 0,
         data: co2,
