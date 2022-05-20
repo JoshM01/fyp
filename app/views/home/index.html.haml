@@ -7,35 +7,13 @@
     %script{:src => "https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"}
     %script{:src => "https://d3js.org/d3.v6.min.js"}
     %script{:src => "https://cdn.jsdelivr.net/npm/chartjs-plugin-deferred@2.0.0/dist/chartjs-plugin-deferred.min.js"}
-    %script{:src => "https://d3js.org/d3-geo-projection.v2.min.js"}
-    %script{:src => "https://d3js.org/d3-scale-chromatic.v1.min.js"}
+    %script{:src => "https://cdn.plot.ly/plotly-2.12.1.min.js"}
     %script{:src => "chart_settings.js"}
     = stylesheet_link_tag "home"
 
   %body
     %a{:href => '/about'}
       %p.label About
-    %h1 Climate change is already here.
-    %h2 And we are the reason why it is happening.
-
-    %p.label *Mean temperature refers to the pre-industrial average
-
-    .chart
-      %canvas#chart1
-
-    %script{:src => "chart_1.js"}
-
-    %a{:href => "https://ourworldindata.org/atmospheric-concentrations"}
-      %p.label Atmospheric CO₂ concentration data courtesy of Our World in Data
-
-    %a{:href => "https://data.giss.nasa.gov/gistemp/"}
-      %p.label Deviation from mean temperature data courtesy of NASA
-
-    %p The concentration of carbon dioxide in our atmosphere never exceeded 300 parts per million (ppm) in the last 800,000 years. Today, however, this figure is rapidly approaching 420ppm - and as it climbs further and further, the higher Earth's temperature rises with it.
-
-    %p The fact that these changes in climate have only been noticeable in the last 200 years are no coincidence. The vast majority of scientists agree that climate change is the result of human activity - primarily burning fossil fuels - increasing the concentration of CO₂ and other gases which trap heat in our atmosphere.
-
-    %p This temperature rise will heat our oceans and melt our icecaps, causing sea levels to rise. With the combination of higher sea levels and higher temperatures, hundreds of millions of people may have to leave their homes before 2050, with large-scale climate migration likely to begin by 2030.
 
     .bg1
       %a{:href => "https://www.bangkokpost.com/thailand/general/1785569/revised-forecast-puts-bangkok-underwater-by-2050"}
@@ -56,7 +34,41 @@
     %a{:href => '/about'}
       %p.label Image sources can be found on the About page.
 
-    %p This isn't a tourism ad. All of these places are at risk of being destroyed by rising sea levels - whether through direct flooding, disruptions to water supply and/or salt water damaging buildings. The cost of inaction is extremely high.
+    %p.label Everything you read or see here is sourced - hover over text for further information.
+
+    %h1 This isn't a tourism website.
+    %h2 These places are all at risk of being wholly or partially destroyed by the effects of climate change - most before 2050.
+
+    %p.label *Mean temperature refers to the pre-industrial average
+
+    .chart
+      %canvas#chart1
+
+    %script{:src => "chart_1.js"}
+
+    %a{:href => "https://ourworldindata.org/atmospheric-concentrations"}
+      %p.label Atmospheric CO₂ concentration data courtesy of Our World in Data
+
+    %a{:href => "https://data.giss.nasa.gov/gistemp/"}
+      %p.label Deviation from mean temperature data courtesy of NASA
+
+    %a{:href => "https://ourworldindata.org/explorers/climate-change?facet=none&hideControls=true&Metric=CO%E2%82%82+concentrations&Long-run+series%3F=true&country=~OWID_WRL"}
+      %p The concentration of carbon dioxide in our atmosphere never exceeded 300 parts per million (ppm) in the last 800,000 years.
+
+    %a{:href => "https://ourworldindata.org/co2-and-other-greenhouse-gas-emissions"}
+      %p Today, however, this figure is rapidly approaching 420ppm - and as it climbs further and further, global temperatures will continue to rise too.
+
+    %a{:href => "https://climate.nasa.gov/faq/17/do-scientists-agree-on-climate-change/"}
+      %p The vast majority of scientists agree that climate change is the result of human activity - and the data proves it.
+
+    %a{:href => "https://www.acs.org/content/acs/en/climatescience/greenhousegases/industrialrevolution.html"}
+      %p The fact that these changes in climate have only been noticeable in the last 200 years is no coincidence - they line up perfectly with the onset of the Industrial Revolution, when humans started to burn fossil fuels.
+
+    %a{:href => "https://www.metoffice.gov.uk/weather/climate-change/causes-of-climate-change"}
+      %p Increasing the concentration of CO₂ and other gases which trap heat in our atmosphere. This temperature rise will heat our oceans and melt our icecaps, causing sea levels to rise.
+
+    %a{:href => "https://www.worldbank.org/en/news/press-release/2021/09/13/climate-change-could-force-216-million-people-to-migrate-within-their-own-countries-by-2050"}
+      %p With the combination of higher sea levels and higher temperatures, as many as 216 million people may have to leave their homes before 2050 - and this only refers to people who can migrate within the country they currently live in.
 
     .pie
       %canvas#chart2

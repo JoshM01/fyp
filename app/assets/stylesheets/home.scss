@@ -1,12 +1,3 @@
-/** @keyframes slideInFromBottom {
-  0% {
-    transform: translateY(50%);
-  }
-  100% {
-    transform: translateY(0);
-  }
-} */
-
 body, html {
   height: 100%;
   width: 100%;
@@ -40,8 +31,12 @@ body, html {
 
 .bg1{
   background-image: url("bangkok2.png");
-  height: 25%;
-  background-position: bottom;
+  margin: auto;
+  position: relative;
+  height: 18%;
+  min-width: 600px;
+  width: 75%;
+  background-position: center 80%;
   background-repeat: no-repeat;
   background-size: cover;
   text-align: center;
@@ -49,7 +44,11 @@ body, html {
 
 .bg2{
   background-image: url("jakarta2.png");
-  height: 25%;
+  margin: auto;
+  position: relative;
+  height: 18%;
+  min-width: 600px;
+  width: 75%;
   background-position: center 70%;
   background-repeat: no-repeat;
   background-size: cover;
@@ -58,7 +57,11 @@ body, html {
 
 .bg3{
   background-image: url("maldives2.png");
-  height: 25%;
+  margin: auto;
+  position: relative;
+  height: 18%;
+  min-width: 600px;
+  width: 75%;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -67,7 +70,11 @@ body, html {
 
 .bg4{
   background-image: url("miami2.png");
-  height: 25%;
+  margin: auto;
+  position: relative;
+  height: 18%;
+  min-width: 600px;
+  width: 75%;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -76,7 +83,11 @@ body, html {
 
 .bg5{
   background-image: url("venice2.png");
-  height: 25%;
+  margin: auto;
+  position: relative;
+  height: 18%;
+  min-width: 600px;
+  width: 75%;
   background-position: center 70%;
   background-repeat: no-repeat;
   background-size: cover;
@@ -94,7 +105,7 @@ a:hover, a:focus, label:hover, label:focus {
 
 hr {
   color: #eeeeee;
-  margin: 50px;
+  margin: 25px;
 }
 
 h1 {
@@ -111,11 +122,20 @@ h2 {
   margin: 10px 25px 40px 25px;
 }
 
+h3 {
+  font-family: "OpenSans-Medium";
+  font-size: 18px;
+  text-align: center;
+  margin: 25px;
+  color: #eeeeee;
+}
+
 p {
   font-family: "OpenSans-Regular";
   font-size: 18px;
   text-align: left;
   margin: 25px;
+  color: #eeeeee;
 }
 
 .label {
