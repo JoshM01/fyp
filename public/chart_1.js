@@ -82,17 +82,20 @@ d3.csv('data.csv').then(function(loadedData) {
       stacked: false,
       plugins: {
         legend: true,
+        title: {
+          display: true,
+          text: "The correlation between atmospheric CO₂ concentration and temperatures",
+          font: {
+            size: 18
+          },
+          padding: {
+            top: 20,
+            bottom: 10
+          }
+        }
       },
       scales: {
         x: {
-          type: 'time',
-          time: {
-            unit: 'year',
-            tooltipFormat: 'yyyy',
-          },
-          displayFormats: {
-            year: 'yyyy',
-          },
           grid: {
             display: false,
           },

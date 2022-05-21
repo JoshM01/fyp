@@ -130,11 +130,19 @@ h3 {
   color: #eeeeee;
 }
 
-p {
+p, ul {
   font-family: "OpenSans-Regular";
   font-size: 18px;
   text-align: left;
   margin: 25px;
+  color: #eeeeee;
+}
+
+li {
+  font-family: "OpenSans-Regular";
+  font-size: 18px;
+  text-align: left;
+  margin: 10px;
   color: #eeeeee;
 }
 

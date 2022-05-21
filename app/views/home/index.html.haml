@@ -3,11 +3,11 @@
   %head
     %meta{:content => "width=device-width, initial-scale=1"}
     %script{:src => "https://cdn.jsdelivr.net/npm/chart.js"}
-    %script{:src => "https://cdn.jsdelivr.net/npm/chart.js/dist/chart.min.js"}
+    %script{:src => "https://cdn.jsdelivr.net/npm/chart.js@3.7.0/dist/chart.min.js"}
     %script{:src => "https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"}
     %script{:src => "https://d3js.org/d3.v6.min.js"}
     %script{:src => "https://cdn.jsdelivr.net/npm/chartjs-plugin-deferred@2.0.0/dist/chartjs-plugin-deferred.min.js"}
-    %script{:src => "https://cdn.plot.ly/plotly-2.12.1.min.js"}
+    %script{:src => "https://cdn.jsdelivr.net/npm/chartjs-plugin-trendline"}
     %script{:src => "chart_settings.js"}
     = stylesheet_link_tag "home"
 
@@ -37,7 +37,9 @@
     %p.label Everything you read or see here is sourced - hover over text for further information.
 
     %h1 This isn't a tourism website.
-    %h2 These places are all at risk of being wholly or partially destroyed by the effects of climate change - most before 2050.
+    %h2 These places are all at risk of being wholly or partially destroyed by the effects of climate change - several by 2050.
+
+    %hr
 
     %p.label *Mean temperature refers to the pre-industrial average
 
@@ -70,10 +72,40 @@
     %a{:href => "https://www.worldbank.org/en/news/press-release/2021/09/13/climate-change-could-force-216-million-people-to-migrate-within-their-own-countries-by-2050"}
       %p With the combination of higher sea levels and higher temperatures, as many as 216 million people may have to leave their homes before 2050 - and this only refers to people who can migrate within the country they currently live in.
 
-    .pie
+    %hr
+
+    %p Climate change isn't some distant future problem - it is very much already a threat now, and we are already feeling the effects of it even if it isn't immediately obvious.
+
+    .chart
       %canvas#chart2
 
     %script{:src => "chart_2.js"}
+
+    .chart
+      %canvas#chart3
+
+    %script{:src => "chart_3.js"}
+
+    %a{:href => "https://www.metoffice.gov.uk/research/climate/maps-and-data/historic-station-data"}
+      %p.label Weather data from the Met Office
+
+    %p While these rising temperatures may not be immediately obvious in day to day life, once laid out on a graph they become clear. Over the last 50 years especially:
+
+    %ul
+      %li The hottest days are more hot
+      %li The coldest days are less cold
+      %li The average day is hotter than what it was 50-70 years ago
+
+    %a{:href => "https://www.globalchange.gov/browse/indicator-details/3983"}
+      %p Take a moment to think about the last few summers, particularly. Have you noticed that - generally speaking - the hottest day on a given summer is hotter than that of the year before? Have you noticed that heatwaves are more frequent and last longer?
+
+    %a{:href => "https://www.theguardian.com/environment/2021/dec/17/warmer-winters-climate-crisis-scientists"}
+      %p Think of winter, too. Have you been seeing less ice and snow? Have you noticed that winter days are often warmer than what they were even five or ten years ago? Warm winters, as pleasant as they may seem at the time, are not normal - they can wreak havoc later in the year.
+
+    .pie
+      %canvas#chart5
+
+    %script{:src => "chart_5.js"}
 
     %hr
     %p Thank you

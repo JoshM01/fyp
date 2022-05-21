@@ -1,15 +1,15 @@
 d3.csv('heathrow.csv').then(function(loadedData) {
 
-    let tmax_feb = [];
-    let tmin_feb = [];
+    let tmax_jul = [];
+    let tmin_jul = [];
     let labels = [];
 
     for (let i=0; i<loadedData.length; i++) {
-      if(loadedData[i].mm == "2"){
-        tmax_feb.push(loadedData[i].tmax);
+      if(loadedData[i].mm == "7"){
+        tmax_jul.push(loadedData[i].tmax);
       }
-      if(loadedData[i].mm == "2"){
-        tmin_feb.push(loadedData[i].tmin);
+      if(loadedData[i].mm == "7"){
+        tmin_jul.push(loadedData[i].tmin);
       }
       if(i % 12 == 0){
         labels.push(loadedData[i].yyyy);
@@ -20,35 +20,35 @@ d3.csv('heathrow.csv').then(function(loadedData) {
     const delayBetweenPoints = totalDuration / labels.length;
     const previousY = (ctx) => ctx.index === 0 ? ctx.chart.scales.y.getPixelForValue(100) : ctx.chart.getDatasetMeta(ctx.datasetIndex).data[ctx.index - 1].getProps(['y'], true).y;
 
-    var ctx = document.getElementById('chart2');
+    var ctx = document.getElementById('chart3');
 
-    var chart2 = new Chart(ctx, {
+    var chart3 = new Chart(ctx, {
       type: 'line',
       data: {
         labels: labels,
         datasets: [{
-          label: 'Average daily maximum temperature in February',
-          borderColor: 'rgba(39, 124, 255, 0.5)',
-          backgroundColor: 'rgba(39, 124, 255, 0.5)',
+          label: 'Average daily maximum temperature in July',
+          borderColor: 'rgba(255, 124, 39, 0.5)',
+          backgroundColor: 'rgba(255, 124, 39, 0.5)',
           borderWidth: 2.5,
           radius: 0,
-          data: tmax_feb,
+          data: tmax_jul,
           trendlineLinear: {
-        		style: "rgba(39, 124, 255, 1)",
+        		style: "rgba(255, 124, 39, 1)",
         		lineStyle: "dotted",
         		width: 2.5,
           }
         },
         {
-          label: 'Average daily minimum temperature in February',
-          borderColor: 'rgba(61, 255, 255, 0.5)',
-          backgroundColor: 'rgba(61, 255, 255, 0.5)',
+          label: 'Average daily minimum temperature in July',
+          borderColor: 'rgba(255, 208, 39, 0.5)',
+          backgroundColor: 'rgba(255, 208, 39, 0.5)',
           borderWidth: 2.5,
           radius: 0,
-          data: tmin_feb,
+          data: tmin_jul,
           trendlineLinear: {
-        		style: "rgba(61, 255, 255, 1)",
-        		lineStyle: "dotted",
+        		style: "rgba(255, 208, 39, 1)",
+        		lineStyle: "solid",
         		width: 2.5,
           }
         }]
@@ -92,7 +92,7 @@ d3.csv('heathrow.csv').then(function(loadedData) {
           legend: true,
           title: {
             display: true,
-            text: "Average temperatures in February at Heathrow, UK",
+            text: "Average temperatures in July at Heathrow, UK",
             font: {
               size: 18
             },
