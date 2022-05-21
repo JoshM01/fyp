@@ -52,7 +52,7 @@ d3.csv('sector.csv').then(function(loadedData) {
           padding: 5,
           font: {
             family: 'OpenSans-Medium',
-            size: 18
+            size: 12
           }
         },
         title: {
@@ -61,7 +61,7 @@ d3.csv('sector.csv').then(function(loadedData) {
           text: 'CO₂ emissions by sector (2018, tonnes)',
           font: {
             family: 'OpenSans-SemiBold',
-            size: 24
+            size: 18
           }
         }
       }
