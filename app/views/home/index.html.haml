@@ -41,12 +41,12 @@
 
     %hr
 
-    %p.label *Mean temperature refers to the pre-industrial average
-
     .chart
       %canvas#chart1
 
     %script{:src => "chart_1.js"}
+
+    %p.label *Mean temperature refers to the pre-industrial average
 
     %a{:href => "https://ourworldindata.org/atmospheric-concentrations"}
       %p.label Atmospheric CO₂ concentration data courtesy of Our World in Data
@@ -102,10 +102,31 @@
     %a{:href => "https://www.theguardian.com/environment/2021/dec/17/warmer-winters-climate-crisis-scientists"}
       %p Think of winter, too. Have you been seeing less ice and snow? Have you noticed that winter days are often warmer than what they were even five or ten years ago? Warm winters, as pleasant as they may seem at the time, are not normal - they can wreak havoc later in the year.
 
-    .pie
-      %canvas#chart5
+    %hr
 
-    %script{:src => "chart_5.js"}
+    %p So, we know that climate change is here and that we can already feel it - which begs the question, who or what is responsible for carbon emissions? Where do changes need to be made?
+
+    .pie
+      %canvas#chart4
+
+    %script{:src => "chart_4.js"}
+
+    %a{:href => "https://ourworldindata.org/emissions-by-sector"}
+      %p.label Data and description from Our World In Data
+
+    %p What this data shows us is that emissions do not simply come from cars, or from electricity production, or from eating meat - emissions are a product of almost every facet of our everyday lives. In some sectors, there are net-zero solutions where implementation is the only remaining hurdle; in others, low-carbon technologies still need to be developed.
+
+    %p 73.2% of global emissions come from the use of energy - mostly in industry, in transport, and in buildings.
+
+    %a{:href => "https://www.theguardian.com/sustainable-business/2017/jul/10/100-fossil-fuel-companies-investors-responsible-71-global-emissions-cdp-study-climate-change"}
+      %p ...
 
     %hr
-    %p Thank you
+
+    %p If you made it down here, thank you!
+
+    %a{:href => '/about'}
+      %p As discussed in the About section, I made this website for my dissertation.
+
+    %a{:href => "https://forms.office.com/Pages/ResponsePage.aspx?id=kyaQa3QQqkCeIdiURqLrtZIw86l4M_ZGkAetDQhwPnVUODJJMjRNNUVZN0NPNTJSTEJFRUFMR0hDMC4u"}
+      %p In order to evaluate it, I would really appreciate if you could complete a survey (which can be accessed by clicking this text). It won't take long!

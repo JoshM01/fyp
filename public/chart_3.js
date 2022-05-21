@@ -36,7 +36,7 @@ d3.csv('heathrow.csv').then(function(loadedData) {
           trendlineLinear: {
         		style: "rgba(255, 124, 39, 1)",
         		lineStyle: "dotted",
-        		width: 2.5,
+        		width: 5,
           }
         },
         {
@@ -48,8 +48,8 @@ d3.csv('heathrow.csv').then(function(loadedData) {
           data: tmin_jul,
           trendlineLinear: {
         		style: "rgba(255, 208, 39, 1)",
-        		lineStyle: "solid",
-        		width: 2.5,
+        		lineStyle: "dotted",
+        		width: 5,
           }
         }]
       },

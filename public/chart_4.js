@@ -16,9 +16,9 @@ d3.csv('sector.csv').then(function(loadedData) {
 
   let colors = ["#ffb4ff","#ff2727","#ff7c27","#ffd027","#baf000","#27a927","#230081","#277cff","#3dffff","#935293"];
 
-  const ctx = document.getElementById('chart5').getContext('2d');
+  const ctx = document.getElementById('chart4').getContext('2d');
 
-  const chart5 = new Chart(ctx, {
+  const chart4 = new Chart(ctx, {
     type: 'doughnut',
     data: {
       labels: labels,
