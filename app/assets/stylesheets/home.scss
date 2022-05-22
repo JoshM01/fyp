@@ -4,6 +4,24 @@ body, html {
   margin: 0;
 }
 
+.button {
+  background-color: #EEEEEE;
+  border: none;
+  color: #1e1e1e;
+  padding: 2.5% 25%;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 24px;
+  font-family: "OpenSans-Bold";
+  cursor: pointer;
+  width: 50%;
+}
+
+.button:hover {
+  text-decoration: underline;
+}
+
 .chart {
   position: relative;
   margin: auto;
