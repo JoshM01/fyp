@@ -87,6 +87,7 @@ d3.csv('heathrow.csv').then(function(loadedData) {
           mode: 'index',
           intersect: false
         },
+        maintainAspectRatio: false,
         stacked: false,
         plugins: {
           legend: true,

@@ -91,6 +91,7 @@ d3.csv('renewable-consumption.csv').then(function(loadedData) {
         mode: 'index',
         intersect: false
       },
+      maintainAspectRatio: false,
       stacked: false,
       plugins: {
         legend: true,

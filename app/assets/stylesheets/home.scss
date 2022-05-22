@@ -11,6 +11,41 @@ body, html {
   width: 50%;
 }
 
+@media only screen and (max-width: 1000px) {
+  .chart {
+    width: 90%;
+    height: 50%;
+  }
+}
+
+@media only screen and (min-width: 1000px) {
+  .chart {
+    width: 80%;
+    height: 47.5%;
+  }
+}
+
+@media only screen and (min-width: 1250px) {
+  .chart {
+    width: 70%;
+    height: 45%;
+  }
+}
+
+@media only screen and (min-width: 1500px) {
+  .chart {
+    width: 60%;
+    height: 42.5%;
+  }
+}
+
+@media only screen and (min-width: 1750px) {
+  .chart {
+    width: 50%;
+    height: 40%;
+  }
+}
+
 .pie {
   position: relative;
   margin: auto;
