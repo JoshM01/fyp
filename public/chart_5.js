@@ -31,8 +31,8 @@ d3.csv('renewables.csv').then(function(loadedData) {
       },
       {
         label: 'Global average price of solar photovoltaic (PV) modules',
-        borderColor: 'rgba(39, 124, 255, 1)',
-        backgroundColor: 'rgba(39, 124, 255, 1)',
+        borderColor: 'rgba(255, 208, 39, 1)',
+        backgroundColor: 'rgba(255, 208, 39, 1)',
         borderWidth: 2.5,
         radius: 0,
         data: solar_cost,
